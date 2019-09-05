@@ -1,0 +1,13 @@
+# Navigating the Software
+
+## 1. Getting and Setting the Working Directory
+
+Use `getwd()` and `setwd()`
+
+## 2. Saving your workspace 
+
+`save.image()`
+
+## 3. Viewing Your Command History
+
+`history()`

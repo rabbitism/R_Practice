@@ -1,0 +1,122 @@
+# Getting Started and Getting Help
+
+## 1. Downloading and installing R
+
+## 2. Starting R
+
+## 3. Entering Commands
+
+if expressoin is incomplete, R will prompt for more
+
+## 4. Exiting from R
+
+## 5. Interrupting R
+
+Windows or OS X: Either press the ESC key or click on the stop-sign icon
+
+Linux or Unix: Press Ctrl-C.
+
+## 6. Viewing the Supplied Documentation
+
+```{r}
+help.start()
+```
+
+## 7. Getting Help on a Function
+
+Use `help` to display the documentation for the function
+
+```{r}
+help(functionname)
+# Or use the following command
+?functionname
+```
+
+Use `args` for a quick reminder of the function arguments
+
+```{r}
+args(functionname)
+```
+
+Use `example` to see examples of using the function
+
+```{r}
+example(functionname)
+```
+
+## 8. Searching the Supplied Documentation
+
+Use `help.search` to search the R documentation on your computer
+
+```{r}
+help.search("pattern")
+# Or use the following command
+??keyword
+```
+
+after search, it will return a list of packages like:
+
+```{r}
+Help files with alias or concept or title matching 'adf.test' using regular expression matching:
+
+tseries::adf.test       Augmented Dickey-Fuller Test
+
+Type '?PKG::FOO' to inspect entry 'PKG::FOO TITLE'
+```
+
+then use help function 
+
+```{r}
+help(adf.test, package="tseries")
+```
+
+## 9. Getting Help on a Package
+
+```{r}
+help(package="packagename")
+```
+
+List all vignettes(additional documents such as introduction, tutorial or reference cards)
+
+```{r}
+vignette()
+```
+
+See a vignettes for a particular package
+
+```{r}
+vignette(package="packagename")
+```
+
+Each vignette has a name, use name to view:
+
+```{r}
+vignette("vignettename")
+```
+
+## 10. Searching the Web for Help
+
+```{r}
+RSiteSearch("key phrase")
+```
+
+## 11. Find Relevant Functions and Packages
+
+Use following methods:
+
+1. Visit <http://cran.r-project.org/web/views>
+2. Visit <https://crantastic.org/>
+3. Visit <https://rseek.org/>
+
+## 12. Searching the Mailing Lists
+
+1. Visit <https://rseek.org/>
+2. Use
+
+```{r}
+RSiteSearch("key phrase")`
+```
+
+## 13. Submitting Questions to the Mailing Lists
+
+mail question to r-help@r-project.org

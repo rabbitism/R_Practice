@@ -1,0 +1,258 @@
+# Some Basics
+
+## 1. Printing Something
+
+Simply enter the variable name or expression at the command prompt
+
+Use `print` function
+
+`print` doesn't support multiple object, print them one by one
+
+or use `cat`, but `cat` doesn't support complex object 
+
+## 2. Setting Variables
+
+```{r}
+x<-3
+y<-4
+z<-sqrt(x^2+y^2)
+```
+
+There is no need for declare or explicitly create variable in R. R is a **dynamically typed language** which means that we can change the variable's data type at will.
+
+global virable assignment
+
+```{r}
+x<<-4
+```
+
+## 3. Listing Variables
+
+Use `ls` function, use `ls.str` for more details about each variable.
+
+Ordinarily, ls does not return any name that begins with a dot (.). such names are considered hidden. Force `ls` to list everything by setting the `all.names` argument to `TRUE`
+
+```{r}
+ls(all.names=TRUE)
+```
+
+
+## 4. Deleting Variables
+
+Use `rm` function
+
+```{r}
+x <- 2*pi
+rm(x)
+```
+
+Remove entire workspace by
+
+```{r}
+rm(list=ls())
+```
+
+## 5. Creating a Vector
+
+Use the `c(...)` operator to construct a vector from given valeus
+
+a vector can contain either numbers, strings, or logical values but not a mixture
+
+```{r}
+c(1,1,2,3,5,8,13,21)
+c(1*pi, 2*pi, 3*pi, 4*pi)
+c("Everyone", "loves", "stats.")
+c(TRUE, TRUE, FALSE, TRUE)
+```
+
+If arguments are vectors, it will be flattened
+
+```{r}
+v1 <- c(1,2,3)
+v2 <- c(4,5,6)
+c(v1,v2)
+```
+
+## 6. Computing Basic Statistics
+
+Use one of these functions assuming that x and y are vectors
+
+```{r}
+x <- c(1,2,3)
+y <- c(6,5,3)
+mean(x) # mean
+median(x) # median
+sd(x) # standard deviation
+var(x) # variance
+cor(x, y) # correlation
+cov(x, y) # covariance
+```
+
+They are sensitive to NA, ignore NAs by using `na.rm=TRUE`
+
+```{r}
+x <- c(0,1,1,2,3,NA)
+mean(x, na.rm=TRUE)
+
+sd(x, na.rm=TRUE)
+```
+
+mean and ad understand dataframe and calculate column by column
+
+var function understand dataframe and calculate the covariance matrix between columns
+
+cor and cov of dataframe return correlation and covariance matrix of columns 
+
+
+## 7. Creating Sequences
+
+Use an `n:m` expression to create the simple sequene n...matrix
+
+```{r}
+1:5
+```
+
+Use the `seq` function for sequences with an increment other than 1:
+
+```{r}
+seq(from=1, to=5, by=2)
+```
+
+Use the `rep` funciton to create a series of repeated values
+
+```{r}
+rep(1, times=5)
+```
+
+Alternatively you can specify a length for the output sequence
+
+```{r}
+seq(from=0, to=20, length.out=5)
+seq(from=1.0, to= 2.0, length.out=5)
+```
+
+## 8. Comparing vectors
+
+Comparison operators: `== != < > <= >=`
+Comparing vectors are element by element. Comparing vector and scalar will expand the scalar to a vector.
+```{r}
+v <- c(3, pi, 4)
+w <- c(pi, pi, pi)
+v == w
+v != w
+v < w
+v > w
+v <= w
+v >= w
+v == pi
+v != pi
+```
+
+Use `any` and `all` to summarize
+
+```{r}
+v <- c(3,pi,4)
+any(v == pi)
+any(v != pi)
+all(v == pi)
+all(v != pi)
+all(v >= 2)
+```
+
+## 9. Selecting Vector Elemenets
+
+* v[3] for the third element of v1
+* Use negative indices to exclude elements
+* Use a vector of indices
+* Use a logical vector to select elements based on a condition
+* Use names to access named elements
+
+**the first element has an index of 1 other than 0**
+
+select multiple elements at once
+
+```{r}
+fib <- c(0,1,1,2,3,5,8,13,21,34)
+fib[1:3]
+fib[4:9]
+fib[c(1,2,4,8)]
+fib[-1]
+fib[-(1:3)]
+fib[fib<10]
+fib[fib%%2==0]
+# select all elemnts greater than median
+fib[fib>median(fib)]
+# select all elements in the lower and upper 40%
+fib[(fib<quantile(fib, 0.2))|(fib>quantile(fib, 0.8))]
+# select all elements that exceed +/- 2 standard deviation from the mean
+fib[abs(fib-mean(fib))>2*sd(v)]
+```
+
+Assign names to vector
+
+```{r}
+years <- c(1960, 1964, 1976, 1994)
+names(years) <- c("Kennedy", "Johnson", "Carter", "Clinton")
+print(years)
+years[2]
+years["Johnson"]
+years[c("Carter", "Johnson")]
+```
+
+## 10. Performing Vector Arithmetic
+
+All basic arithmetic operators can be applied to pairs of vectors. 
+
+```{r}
+v <- c(11,12,13,14,15)
+w <- c(1,2,3,4,5)
+v+w
+v-w
+v*w
+v/w
+w^v
+
+w+2
+w-2
+w*2
+w/2
+2^w
+w^2
+
+mean(w)
+w-mean(w)
+
+sd(w)
+(w-mean(w))/sd(w)
+
+sqrt(w)
+log(w)
+sin(w)
+```
+
+## 11. Getting Operator Precedence Right
+
+|Operator|Meaning|See also|
+|:---|:---|:---|
+|`[` `[[`|Indexing|Recipe 2.9|
+|`::` `:::`|Access variable in a name space||
+|TODO|||
+
+## 12. Defining a Function
+
+```{r eval=FALSE}
+function(param1, ..., paramn) expression
+
+function(param1, ..., paramn) {
+    expr1
+    ...
+    exprn
+}
+```
+
+```{r}
+cv <- function(x) sd(x)/mean(x)
+cv(1:10)
+```
+
+
